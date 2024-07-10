@@ -1,0 +1,19 @@
+# Ignore Gradle files
+/.gradle/
+/build/
+
+# Ignore local.properties file
+/local.properties
+
+# Ignore Android Studio files
+/.idea/
+/.iml
+
+# Ignore generated files
+/build/generated/
+
+# Ignore log files
+*.log
+
+# Ignore macOS specific files
+.DS_Store

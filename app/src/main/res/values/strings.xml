@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">App-Store-Application</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="log_in">Log In</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or">or</string>
+    <string name="or_enter">or Enter</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="create_an_account">Create an account</string>
+</resources>

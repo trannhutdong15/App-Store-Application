@@ -1,0 +1,23 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:type="radial"
+        android:centerX="90%"
+        android:centerY="10%"
+        android:startColor="#E46BBB"
+        android:centerColor="#E280C1"
+        android:endColor="#B72EB2"
+        android:gradientRadius="50dp"
+        android:useLevel="false" />
+
+    <stroke
+        android:width="2dp"
+        android:color="#B2E42EAB"
+        android:dashWidth="4dp"
+        android:dashGap="3dp" /> <!-- Stroke with dash effect -->
+
+    <corners android:radius="19dp" /> <!-- Corner radius to make the button rounded -->
+
+    <size
+        android:width="170dp"
+        android:height="18dp" /> <!-- Set the width and height of the rectangle -->
+</shape>
