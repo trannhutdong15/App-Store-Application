@@ -1,14 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Welcome to Home Page"
-    android:textSize="36dp"
-    android:textColor="@color/white"
-    android:layout_centerVertical="true"
-    />
-</RelativeLayout>
+    android:background="@drawable/background_image"
+    tools:context=".controller.HomeActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/my_primary"
+        android:alpha="0.8"> <!-- Makes the RelativeLayout semi-transparent -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/my_primary"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="-10dp"
+                android:contentDescription="@string/search_icon"
+                android:padding="10dp"
+                android:src="@drawable/ic_search" />
+
+            <!-- Search Bar -->
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="60dp"
+                android:alpha="0.4"
+                android:background="@drawable/rounded_button"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="-40dp"
+                android:contentDescription="@string/profile"
+                android:src="@drawable/ic_profile" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:padding="16dp"
+            android:text="@string/welcome_good_to_see_you"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:padding="16dp"
+            android:text="@string/let_s_find_you_favorite_games"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+    </RelativeLayout>
+
+    <!-- Your other UI components go here -->
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
