@@ -1,0 +1,65 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/backButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/backtohome"
+        android:src="@drawable/ic_back_arrow" />
+
+    <EditText
+        android:id="@+id/etTextGameName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="Game Name"
+        android:inputType="text"
+        android:padding="16dp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/etTextGameUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="Game Url"
+        android:inputType="text"
+        android:padding="16dp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <Button
+        android:id="@+id/btnbuttonSelectImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Image"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/light_grey"
+        android:layout_marginTop="40dp" />
+
+    <ImageView
+        android:id="@+id/ivimageViewGame"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/btnbuttonSaveGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Game"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

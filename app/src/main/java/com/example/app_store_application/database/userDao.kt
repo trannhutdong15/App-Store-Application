@@ -9,8 +9,8 @@ import androidx.room.Query
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(user: UserEntity)
+    suspend fun insertUser(user: UserEntity)
 
-    @Query("SELECT * FROM users WHERE email = :email AND password = :password")
-    suspend fun getUser(email: String, password: String): UserEntity?
+    @Query("SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1")
+    suspend fun getUserByEmailAndPassword(email: String, password: String): UserEntity?
 }

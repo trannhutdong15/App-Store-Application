@@ -1,9 +1,13 @@
 package com.example.app_store_application.database
 
+import android.graphics.Bitmap
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "game_table")
 data class GameEntity(
-    val id: Long,
-    val title: String,
-    val description: String,
-    val price: String,
-    val imageUrl: String
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val gameName: String,
+    val imageGame: ByteArray,
+    val gameUrl: String
 )
