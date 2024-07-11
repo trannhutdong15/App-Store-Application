@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
-
+//Create converters to convert bytearray to bitmap for display image and storing them
 class Converters {
 
     @TypeConverter
