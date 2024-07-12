@@ -88,6 +88,7 @@
         android:id="@+id/etPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:inputType="textPassword"
         android:layout_below="@id/etEmailLogin"
         android:layout_marginTop="18dp"
         android:background="@drawable/rounded_button"

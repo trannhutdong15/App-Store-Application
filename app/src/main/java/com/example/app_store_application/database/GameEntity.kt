@@ -9,16 +9,15 @@ import androidx.room.PrimaryKey
 data class GameEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     var gameName: String,
-    var imageGame: ByteArray?,
+    var imageGame: ByteArray,
     var gameUrl: String
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString().toString(),
-        parcel.createByteArray(),
+        parcel.createByteArray()!!,
         parcel.readString().toString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

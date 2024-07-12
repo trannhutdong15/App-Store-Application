@@ -26,6 +26,7 @@
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.HomeActivity" />
         <activity android:name=".controller.AddGameActivity" />
+        <activity android:name=".controller.EditGameActivity" />
     </application>
 
 </manifest>

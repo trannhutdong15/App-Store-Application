@@ -3,6 +3,7 @@ package com.example.app_store_application.controller
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
@@ -41,7 +42,7 @@ class EditGameActivity : AppCompatActivity() {
         etGameUrl = findViewById(R.id.etTextGameUrledit)
 
         // Retrieve game data to edit (passed from previous activity)
-        gameEntity = intent.getParcelableExtra("game_entity")
+        gameEntity = intent.parcelable("game_entity")
             ?: throw IllegalStateException("GameEntity must not be null")
 
         // Initialize ViewModel with existing game data
@@ -96,6 +97,10 @@ class EditGameActivity : AppCompatActivity() {
                 viewModel.updateSelectedImageBitmap(bitmap)
             }
         }
+    }
+    private inline fun <reified T> Intent.parcelable(key: String): T? = when {
+        SDK_INT >= 33 -> getParcelableExtra(key, T::class.java)
+        else -> @Suppress("DEPRECATION") getParcelableExtra(key) as? T
     }
 
     private fun saveUpdatedGame() {
