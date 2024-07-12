@@ -4,31 +4,39 @@ import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-//Manages data and logic related to adding games,save user input , storing into database
-//AddGaeViewModel purpose
-class AddGameViewModel : ViewModel() {
-    //Get game name after input successfully
+import com.example.app_store_application.database.GameEntity
+
+class EditGameViewModel : ViewModel() {
+
     private val _gameName = MutableLiveData<String>()
     val gameName: LiveData<String> get() = _gameName
 
     private val _gameUrl = MutableLiveData<String>()
-    //Get game url after input successfully
     val gameUrl: LiveData<String> get() = _gameUrl
 
     private val _selectedImageBitmap = MutableLiveData<Bitmap?>()
-
-    //Get game image after input successfully
     val selectedImageBitmap: LiveData<Bitmap?> get() = _selectedImageBitmap
-    //Take all the image to com.example.app_store_application.controller.HomeActivity to use
-    fun setGameName(name: String) {
+
+    // Method to set initial game data for editing
+    fun setGameData(game: GameEntity) {
+        _gameName.value = game.gameName
+        _gameUrl.value = game.gameUrl
+        // Set bitmap if needed, convert from byte array to bitmap
+        // Example: _selectedImageBitmap.value = Converters().toBitmap(game.imageGame)
+    }
+
+    // Method to update game name
+    fun updateGameName(name: String) {
         _gameName.value = name
     }
 
-    fun setGameUrl(url: String) {
+    // Method to update game URL
+    fun updateGameUrl(url: String) {
         _gameUrl.value = url
     }
 
-    fun setSelectedImageBitmap(bitmap: Bitmap?) {
+    // Method to update selected image bitmap
+    fun updateSelectedImageBitmap(bitmap: Bitmap?) {
         _selectedImageBitmap.value = bitmap
     }
 }

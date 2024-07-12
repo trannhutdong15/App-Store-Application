@@ -1,3 +1,5 @@
+package com.example.app_store_application.controller
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,7 +13,6 @@ import com.example.app_store_application.adapter.GameAdapter
 import com.example.app_store_application.database.GameEntity
 import com.example.app_store_application.databinding.ActivityHomeBinding
 import com.example.app_store_application.ViewModel.HomeViewModel
-import com.example.app_store_application.controller.AddGameActivity
 
 
 class HomeActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
         gameAdapter = GameAdapter(emptyList(), this::onOptimizeClick, this::onEditClick, this::onDeleteClick)
         recyclerView.adapter = gameAdapter
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         observeViewModel()
 
@@ -55,12 +56,15 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
     private fun onOptimizeClick(game: GameEntity) {
         viewModel.optimizeGame(game, viewModel.viewModelScope)
     }
 
     private fun onEditClick(game: GameEntity) {
-        viewModel.editGame(game)
+        val intent = Intent(this, EditGameActivity::class.java)
+        intent.putExtra("game_entity", game) // Pass the GameEntity object to EditGameActivity
+        startActivity(intent)
     }
 
     private fun onDeleteClick(game: GameEntity) {

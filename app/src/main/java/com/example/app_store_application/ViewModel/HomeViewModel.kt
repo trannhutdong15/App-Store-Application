@@ -1,8 +1,11 @@
 package com.example.app_store_application.ViewModel
 
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.app_store_application.controller.EditGameActivity
 import kotlinx.coroutines.launch
 
 import com.example.app_store_application.database.AppDatabase
@@ -26,16 +29,8 @@ class HomeViewModel(private val database: AppDatabase) : ViewModel() {
     // Function to optimize a game (placeholder for future functionality)
     fun optimizeGame(game: GameEntity, viewModelScope: CoroutineScope) {
         viewModelScope.launch {
-            // Simulate optimization process
             delay(5000) // Simulate a 5-second delay
-
-            // Log message after optimization completes
             println("Optimize Successfully")
         }
-    }
-
-    // Function to edit a game (placeholder for future functionality)
-    fun editGame(game: GameEntity) {
-        // Placeholder for future implementation
     }
 }
