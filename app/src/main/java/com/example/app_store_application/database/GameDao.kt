@@ -15,9 +15,9 @@ interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: GameEntity)
 
-    @Delete
-    fun deleteGame(game: GameEntity)
+    @Query("DELETE FROM GAME_TABLE WHERE id = :gameId")
+    suspend fun deleteGameById(gameId: Int)
 
     @Update
-    fun updateGame(game: GameEntity)
+    suspend fun updateGame(game: GameEntity)
 }
