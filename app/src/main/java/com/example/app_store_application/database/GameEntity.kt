@@ -1,6 +1,5 @@
 package com.example.app_store_application.database
 
-import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

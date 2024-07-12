@@ -10,6 +10,8 @@ import com.example.app_store_application.R
 import com.example.app_store_application.database.Converters
 import com.example.app_store_application.database.GameEntity
 
+
+//Set up GameAdapter for recycle View progress
 class GameAdapter(private val games: List<GameEntity>) :
     RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
@@ -24,6 +26,8 @@ class GameAdapter(private val games: List<GameEntity>) :
         holder.bind(game)
     }
 
+
+    //get size of the game item
     override fun getItemCount(): Int = games.size
 
     class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
