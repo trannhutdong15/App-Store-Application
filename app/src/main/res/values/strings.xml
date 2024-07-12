@@ -26,4 +26,6 @@
     <string name="share">Share</string>
     <string name="game_image">game image</string>
     <string name="game_name">Game Name</string>
+    <string name="delete" />
+    <string name="edit" />
 </resources>

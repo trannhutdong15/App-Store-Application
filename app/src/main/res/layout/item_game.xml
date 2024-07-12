@@ -7,20 +7,70 @@
 
     <ImageView
         android:id="@+id/ivgameImage"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_vertical"
+        android:layout_width="130dp"
+        android:layout_height="110dp"
         android:contentDescription="@string/game_image"
         android:background="@drawable/rounded_box_image"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_gravity="start" />
 
-    <TextView
-        android:id="@+id/tvgameName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="24dp"
-        android:text="@string/game_name"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp">
+
+        <TextView
+            android:id="@+id/tvgameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Name"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            android:gravity="start"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnOptimize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Optimize"
+                android:background="@drawable/rounded_box"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="50dp" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/delete"
+                android:src="@drawable/ic_delete"
+                android:layout_marginEnd="8dp" />
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="-10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/edit"
+                android:src="@drawable/icon_ediit"
+                android:padding="12dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
