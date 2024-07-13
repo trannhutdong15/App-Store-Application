@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -45,6 +46,10 @@ class AddGameActivity : AppCompatActivity() {
         btnSelectImage.setOnClickListener {
             selectImage()
         }
+        val backButton: ImageButton = findViewById(R.id.backButton2)
+        backButton.setOnClickListener {
+            navigateBack()
+        }
 
         btnSave.setOnClickListener {
             val gameName = etGameName.text.toString().trim()
@@ -65,6 +70,12 @@ class AddGameActivity : AppCompatActivity() {
                 ivSelectedImage.setImageBitmap(it)
             }
         }
+    }
+    private fun navigateBack() {
+        // Navigate back to HomeActivity
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish() // Finish AddGameActivity to prevent it from staying in the back stack
     }
 
     private fun selectImage() {

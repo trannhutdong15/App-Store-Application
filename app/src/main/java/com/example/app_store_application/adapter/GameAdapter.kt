@@ -1,5 +1,6 @@
 package com.example.app_store_application.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,31 +14,42 @@ import com.example.app_store_application.database.Converters
 import com.example.app_store_application.database.GameEntity
 
 class GameAdapter(
-    private val games: List<GameEntity>,
+    private var games: List<GameEntity>,
     private val onOptimizeClick: (GameEntity) -> Unit,
-    private val onEditClick: (GameEntity) -> Unit,
-    private val onDeleteClick: (GameEntity) -> Unit
+    private val onEditClick: (GameEntity) -> Unit
 ) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_game, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_game, parent, false)
         return GameViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = games[position]
         holder.bind(game)
+        holder.itemView.findViewById<Button>(R.id.btnOptimize).setOnClickListener {
+            onOptimizeClick(game)
+        }
+        holder.itemView.findViewById<ImageButton>(R.id.btnEdit).setOnClickListener {
+            onEditClick(game)
+        }
     }
 
-    override fun getItemCount(): Int = games.size
+    override fun getItemCount(): Int {
+        return games.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateGames(newGames: List<GameEntity>) {
+        games = newGames
+        notifyDataSetChanged()
+    }
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val gameImage: ImageView = itemView.findViewById(R.id.ivgameImage)
         private val gameName: TextView = itemView.findViewById(R.id.tvgameName)
-        private val btnOptimize: Button = itemView.findViewById(R.id.btnOptimize)
-        private val btnEdit: ImageButton = itemView.findViewById(R.id.btnEdit)
-        private val btnDelete: ImageButton = itemView.findViewById(R.id.btnDelete)
+        private val gameImage: ImageView = itemView.findViewById(R.id.ivgameImage)
+        private val optimizeButton: Button = itemView.findViewById(R.id.btnOptimize)
+        private val checkIcon: ImageView = itemView.findViewById(R.id.ivCheck)
 
         fun bind(game: GameEntity) {
             gameName.text = game.gameName
@@ -46,17 +58,22 @@ class GameAdapter(
             val bitmap = Converters().toBitmap(game.imageGame)
             gameImage.setImageBitmap(bitmap)
 
-            btnOptimize.setOnClickListener {
-                onOptimizeClick.invoke(game)
+            // Check if the game is optimized and show check icon accordingly
+            if (game.isOptimized) {
+                showOptimizedIcon()
+            } else {
+                hideOptimizedIcon()
             }
+        }
 
-            btnEdit.setOnClickListener {
-                onEditClick.invoke(game)
-            }
+        fun showOptimizedIcon() {
+            checkIcon.visibility = View.VISIBLE
+            optimizeButton.setBackgroundResource(R.drawable.rounded_box_image)
+        }
 
-            btnDelete.setOnClickListener {
-                onDeleteClick.invoke(game)
-            }
+        fun hideOptimizedIcon() {
+            checkIcon.visibility = View.GONE
+            optimizeButton.setBackgroundResource(R.drawable.rounded_box_image)
         }
     }
 }

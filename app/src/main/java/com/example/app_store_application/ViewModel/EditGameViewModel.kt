@@ -1,42 +1,25 @@
 package com.example.app_store_application.ViewModel
 
-import android.graphics.Bitmap
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.app_store_application.database.AppDatabase
 import com.example.app_store_application.database.GameEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class EditGameViewModel : ViewModel() {
+class EditGameViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _gameName = MutableLiveData<String>()
-    val gameName: LiveData<String> get() = _gameName
+    private val gameDao = AppDatabase.getInstance(application).gameDao()
 
-    private val _gameUrl = MutableLiveData<String>()
-    val gameUrl: LiveData<String> get() = _gameUrl
-
-    private val _selectedImageBitmap = MutableLiveData<Bitmap?>()
-    val selectedImageBitmap: LiveData<Bitmap?> get() = _selectedImageBitmap
-
-    // Method to set initial game data for editing
-    fun setGameData(game: GameEntity) {
-        _gameName.value = game.gameName
-        _gameUrl.value = game.gameUrl
-        // Set bitmap if needed, convert from byte array to bitmap
-        // Example: _selectedImageBitmap.value = Converters().toBitmap(game.imageGame)
+    fun getGameById(gameId: Int): LiveData<GameEntity> {
+        return gameDao.getGameById(gameId)
     }
 
-    // Method to update game name
-    fun updateGameName(name: String) {
-        _gameName.value = name
-    }
-
-    // Method to update game URL
-    fun updateGameUrl(url: String) {
-        _gameUrl.value = url
-    }
-
-    // Method to update selected image bitmap
-    fun updateSelectedImageBitmap(bitmap: Bitmap?) {
-        _selectedImageBitmap.value = bitmap
+    fun updateGame(game: GameEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            gameDao.updateGame(game)
+        }
     }
 }

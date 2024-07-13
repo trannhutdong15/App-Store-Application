@@ -1,5 +1,6 @@
 package com.example.app_store_application.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -17,6 +18,9 @@ interface GameDao {
 
     @Query("DELETE FROM GAME_TABLE WHERE id = :gameId")
     suspend fun deleteGameById(gameId: Int)
+
+    @Query("SELECT * FROM game_table WHERE id = :gameId")
+    fun getGameById(gameId: Int): LiveData<GameEntity>
 
     @Update
     suspend fun updateGame(game: GameEntity)

@@ -6,7 +6,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Optimize Game Application"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppStoreApplication"
@@ -14,7 +14,6 @@
         <activity
             android:name=".controller.LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.AppStoreApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +23,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".controller.RegisterActivity" />
-        <activity android:name=".controller.HomeActivity" />
         <activity android:name=".controller.AddGameActivity" />
-        <activity android:name=".controller.EditGameActivity" />
+        <activity android:name=".controller.HomeActivity" />
+        <activity android:name=".controller.EditActivity" />
     </application>
 
 </manifest>

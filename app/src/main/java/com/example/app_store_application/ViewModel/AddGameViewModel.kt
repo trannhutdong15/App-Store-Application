@@ -19,7 +19,7 @@ class AddGameViewModel : ViewModel() {
 
     //Get game image after input successfully
     val selectedImageBitmap: LiveData<Bitmap?> get() = _selectedImageBitmap
-    //Take all the image to com.example.app_store_application.controller.HomeActivity to use
+    //Take all the image to com.example.app_store_application.controller.com.example.app_store_application.controller.com.example.app_store_application.controller.HomeActivity to use
     fun setGameName(name: String) {
         _gameName.value = name
     }

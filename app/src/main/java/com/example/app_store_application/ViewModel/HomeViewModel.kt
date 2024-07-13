@@ -1,36 +1,36 @@
-package com.example.app_store_application.ViewModel
-
-import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.app_store_application.controller.EditGameActivity
-import kotlinx.coroutines.launch
-
 import com.example.app_store_application.database.AppDatabase
 import com.example.app_store_application.database.GameEntity
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class HomeViewModel(private val database: AppDatabase) : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    val games = liveData(Dispatchers.IO) {
-        val gamesList = database.gameDao().getAllGames()
-        emit(gamesList)
-    }
-    fun deleteGame(game: GameEntity) {
+    private val gameDao = AppDatabase.getInstance(application).gameDao()
+    private val _games = MutableLiveData<List<GameEntity>>() // MutableLiveData to hold list of games
+    val games: LiveData<List<GameEntity>> get() = _games // Expose LiveData
+
+    init {
+        // Initialize games in ViewModel
         viewModelScope.launch(Dispatchers.IO) {
-            database.gameDao().deleteGameById(game.id)
+            _games.postValue(gameDao.getAllGames()) // Post initial list of games to LiveData
         }
     }
 
-    // Function to optimize a game (placeholder for future functionality)
-    fun optimizeGame(game: GameEntity, viewModelScope: CoroutineScope) {
-        viewModelScope.launch {
-            delay(5000) // Simulate a 5-second delay
-            println("Optimize Successfully")
+    fun optimizeGame(game: GameEntity, onComplete: (Boolean) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                // Simulate some delay
+                Thread.sleep(3000)
+                gameDao.updateGame(game.apply { isOptimized = true })
+                onComplete(true) // Pass true if optimization succeeds
+            } catch (e: Exception) {
+                onComplete(false) // Pass false if optimization fails
+            }
         }
     }
 }

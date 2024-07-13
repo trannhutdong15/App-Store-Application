@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -7,12 +8,11 @@
 
     <ImageView
         android:id="@+id/ivgameImage"
-        android:layout_width="130dp"
-        android:layout_height="110dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/game_image"
         android:background="@drawable/rounded_box_image"
-        android:scaleType="centerCrop"
-        android:layout_gravity="start" />
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -20,7 +20,7 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingStart="8dp">
+        android:layout_marginStart="8dp">
 
         <TextView
             android:id="@+id/tvgameName"
@@ -28,49 +28,59 @@
             android:layout_height="wrap_content"
             android:text="Game Name"
             android:textSize="20sp"
-            android:layout_marginStart="10dp"
             android:textStyle="bold|italic"
             android:textColor="@color/white"
-            android:gravity="start"
             android:layout_marginBottom="8dp"/>
 
+        <!-- Horizontal layout for Optimize Button, Check Icon, and Edit Button -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:orientation="horizontal">
 
+            <!-- Optimize Button -->
             <Button
                 android:id="@+id/btnOptimize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
                 android:text="Optimize"
-                android:background="@drawable/rounded_box"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="50dp" />
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:background="@drawable/rounded_box_image"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Check Icon -->
+            <ImageView
+                android:id="@+id/ivCheck"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:visibility="invisible"/>
+
+            <!-- Edit ImageButton -->
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_ediit"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/edit"/>
 
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/delete"
                 android:src="@drawable/ic_delete"
-                android:layout_marginEnd="8dp" />
-
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="-10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/edit"
-                android:src="@drawable/icon_ediit"
-                android:padding="12dp" />
-
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/delete"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>
