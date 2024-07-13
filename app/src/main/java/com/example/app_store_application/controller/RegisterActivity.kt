@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //Initialize back button in Register to navigate to Login Page
         val backButton: ImageView = findViewById(R.id.backButton1)
         backButton.setOnClickListener {
             navigateToLogin()
@@ -34,7 +34,7 @@ class RegisterActivity : AppCompatActivity() {
                 navigateToLogin()
             }
         })
-
+        //If user click Sign Up button all the data will be check before load them to database
         binding.btnSignUp.setOnClickListener {
             // Use dataBinding to get information through xml file
             val fullName = binding.etFullName.text.toString()

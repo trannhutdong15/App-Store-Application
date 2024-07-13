@@ -1,4 +1,4 @@
-package com.example.app_store_application.ViewModel
+package com.example.app_store_application.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -12,11 +12,12 @@ import kotlinx.coroutines.launch
 class EditGameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gameDao = AppDatabase.getInstance(application).gameDao()
-
+    //Trigger getGameById through Home Activity
     fun getGameById(gameId: Int): LiveData<GameEntity> {
         return gameDao.getGameById(gameId)
     }
 
+    //Trigger updateGame function from Home Activity
     fun updateGame(game: GameEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             gameDao.updateGame(game)

@@ -1,4 +1,4 @@
-package com.example.app_store_application.ViewModel
+package com.example.app_store_application.viewModel
 
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData

@@ -2,7 +2,7 @@ package com.example.app_store_application.controller
 
 import android.app.AlertDialog
 import com.example.app_store_application.adapter.GameAdapter
-import com.example.app_store_application.ViewModel.HomeViewModel
+import com.example.app_store_application.viewModel.HomeViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -24,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        //Initialize Recycle View for displaying list of games
+        //Through GameAdapter Class where recycle view is set up correctly to displaying list of game
         recyclerView = findViewById(R.id.recyclerViewRecentGames)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -52,6 +54,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
+    //Handle Click event for Optimize button and log some messages
     private fun onOptimizeClick(game: GameEntity) {
         viewModel.optimizeGame(game) { success ->
             runOnUiThread {
@@ -63,6 +67,8 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+    //Handle click event for Edit button
     private fun onEditClick(game: GameEntity) {
         val intent = Intent(this, EditActivity::class.java)
         intent.putExtra("GAME_ID", game.id)
@@ -72,7 +78,11 @@ class HomeActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+    //Handle Click Event and Logic of Delete button
     private fun onDeleteClick(game: GameEntity) {
+
+        //Initialize AlertDialog Buider for telling user if they want to continue deleting the games.
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Confirm Deletion")
         alertDialogBuilder.setMessage("Are you sure you want to delete this game?")

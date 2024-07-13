@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 
-
+//Annotation TypeConverters to connect Converters class to Appdatabase
 @Database(entities = [UserEntity::class, GameEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

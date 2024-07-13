@@ -1,4 +1,4 @@
-package com.example.app_store_application.ViewModel
+package com.example.app_store_application.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -18,7 +18,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val games: LiveData<List<GameEntity>> get() = _games // Expose LiveData
 
     init {
-        // Initialize games in ViewModel
+        // Initialize games in viewModel
         viewModelScope.launch(Dispatchers.IO) {
             _games.postValue(gameDao.getAllGames()) // Post initial list of games to LiveData
         }

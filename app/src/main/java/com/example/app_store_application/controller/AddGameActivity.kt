@@ -18,7 +18,7 @@ import com.example.app_store_application.R
 import com.example.app_store_application.database.AppDatabase
 import com.example.app_store_application.database.GameEntity
 import com.example.app_store_application.database.Converters
-import com.example.app_store_application.ViewModel.AddGameViewModel
+import com.example.app_store_application.viewModel.AddGameViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

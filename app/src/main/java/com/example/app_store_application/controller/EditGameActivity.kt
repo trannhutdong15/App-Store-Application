@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.app_store_application.R
 import com.example.app_store_application.database.GameEntity
-import com.example.app_store_application.ViewModel.EditGameViewModel
+import com.example.app_store_application.viewModel.EditGameViewModel
 import java.io.ByteArrayOutputStream
 
 class EditActivity : AppCompatActivity() {
