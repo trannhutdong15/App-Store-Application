@@ -1,3 +1,5 @@
+package com.example.app_store_application.ViewModel
+
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -11,7 +13,8 @@ import kotlinx.coroutines.launch
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gameDao = AppDatabase.getInstance(application).gameDao()
-    private val _games = MutableLiveData<List<GameEntity>>() // MutableLiveData to hold list of games
+    private val _games =
+        MutableLiveData<List<GameEntity>>() // MutableLiveData to hold list of games
     val games: LiveData<List<GameEntity>> get() = _games // Expose LiveData
 
     init {
@@ -30,6 +33,18 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 onComplete(true) // Pass true if optimization succeeds
             } catch (e: Exception) {
                 onComplete(false) // Pass false if optimization fails
+            }
+        }
+    }
+
+    fun deleteGame(gameId: Int, onComplete: (Boolean) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                gameDao.deleteGameById(gameId)
+                _games.postValue(gameDao.getAllGames())
+                onComplete(true) // Pass true if deletion succeeds
+            } catch (e: Exception) {
+                onComplete(false) // Pass false if deletion fails
             }
         }
     }

@@ -1,7 +1,8 @@
 package com.example.app_store_application.controller
 
+import android.app.AlertDialog
 import com.example.app_store_application.adapter.GameAdapter
-import HomeViewModel
+import com.example.app_store_application.ViewModel.HomeViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -26,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewRecentGames)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        gameAdapter = GameAdapter(emptyList(), this::onOptimizeClick, this::onEditClick)
+        gameAdapter = GameAdapter(emptyList(), this::onOptimizeClick, this::onEditClick,this::onDeleteClick)
         recyclerView.adapter = gameAdapter
 
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -38,7 +39,6 @@ class HomeActivity : AppCompatActivity() {
             navigateToAddGame()
         }
     }
-
     private fun navigateToAddGame() {
         val intent = Intent(this, AddGameActivity::class.java)
         startActivity(intent)
@@ -71,5 +71,28 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+    private fun onDeleteClick(game: GameEntity) {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Confirm Deletion")
+        alertDialogBuilder.setMessage("Are you sure you want to delete this game?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            viewModel.deleteGame(game.id) { success ->
+                if (success) {
+                    runOnUiThread {
+                        Toast.makeText(this, "Game deleted successfully", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this, "Failed to delete game", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        alertDialogBuilder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 }

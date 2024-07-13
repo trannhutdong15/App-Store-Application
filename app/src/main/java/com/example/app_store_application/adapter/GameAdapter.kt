@@ -16,7 +16,8 @@ import com.example.app_store_application.database.GameEntity
 class GameAdapter(
     private var games: List<GameEntity>,
     private val onOptimizeClick: (GameEntity) -> Unit,
-    private val onEditClick: (GameEntity) -> Unit
+    private val onEditClick: (GameEntity) -> Unit,
+    private val onDeleteClick: (GameEntity) -> Unit
 ) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
@@ -27,11 +28,17 @@ class GameAdapter(
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = games[position]
         holder.bind(game)
+        //Optimize Button Click listener
         holder.itemView.findViewById<Button>(R.id.btnOptimize).setOnClickListener {
             onOptimizeClick(game)
         }
+        //Eit Button Click listener
         holder.itemView.findViewById<ImageButton>(R.id.btnEdit).setOnClickListener {
             onEditClick(game)
+        }
+        //Delete button click listener
+        holder.itemView.findViewById<ImageButton>(R.id.btnDelete).setOnClickListener {
+            onDeleteClick(game)
         }
     }
 

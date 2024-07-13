@@ -63,8 +63,8 @@
             <!-- Edit ImageButton -->
             <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/icon_ediit"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_gravity="center_vertical"
@@ -72,8 +72,8 @@
 
             <ImageButton
                 android:id="@+id/btnDelete"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_delete"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginStart="8dp"
