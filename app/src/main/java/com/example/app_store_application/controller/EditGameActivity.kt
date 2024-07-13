@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -43,18 +44,32 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
+
+        //Transaction of back button handle click event
+        val backButton: ImageButton = findViewById(R.id.backButton3)
+        backButton.setOnClickListener {
+            navigateBack()
+        }
+
         val selectImageButton = findViewById<Button>(R.id.btnbuttonSelectImageedit)
         selectImageButton.setOnClickListener {
             selectImage()
         }
 
+
+        //Use for search by id
         if (gameId == -1) {
             Toast.makeText(this, "Invalid Game ID", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
+
+        //Initialize viewModel
         viewModel = ViewModelProvider(this)[EditGameViewModel::class.java]
+
+
+        //Observe data in Edit section by search for id function in gameDao
         viewModel.getGameById(gameId).observe(this) { gameEntity ->
             gameEntity?.let {
                 game = it
@@ -62,12 +77,14 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
+        //Handling click event of button Edit ImageButton
         val updateButton = findViewById<Button>(R.id.btnbuttonUpdateGame)
         updateButton.setOnClickListener {
             updateGameDetails()
         }
     }
 
+    //Take previous user insert in Add section to put infomation in Edit section
     private fun populateGameDetails(game: GameEntity) {
         val gameNameEditText = findViewById<EditText>(R.id.etTextGameNameedit)
         val gameUrlEditText = findViewById<EditText>(R.id.etTextGameUrledit)
@@ -112,12 +129,22 @@ class EditActivity : AppCompatActivity() {
         resultLauncher.launch(intent)
     }
 
+
+    //Navigate to Home Page function in Edit section
+    private fun navigateBack() {
+        // Navigate back to HomeActivity
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish() // Finish AddGameActivity to prevent it from staying in the back stack
+    }
+
+
+    //Handle any exceptions of users inserting images
     private fun handleImageSelectionResult(data: Intent?) {
         val selectedImageUri = data?.data
         if (selectedImageUri != null) {
             ivSelectedImage.visibility = View.VISIBLE
             ivSelectedImage.setImageURI(selectedImageUri)
-            // You may want to save or use selectedImageUri as needed
         }
     }
 }

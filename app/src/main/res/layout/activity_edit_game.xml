@@ -5,14 +5,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/backButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:contentDescription="@string/backtohome"
-        android:src="@drawable/ic_back_arrow" />
-
+        android:background="@drawable/ic_back_arrow" />
     <EditText
         android:id="@+id/etTextGameNameedit"
         android:layout_width="match_parent"
