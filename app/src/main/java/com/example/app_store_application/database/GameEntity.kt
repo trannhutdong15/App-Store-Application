@@ -1,5 +1,6 @@
 package com.example.app_store_application.database
 
+import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

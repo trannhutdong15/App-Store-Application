@@ -11,7 +11,7 @@ import androidx.room.Update
 @Dao
 interface GameDao {
     @Query("SELECT * FROM game_table")
-    fun getAllGames(): List<GameEntity>
+    fun getAllGames(): LiveData<List<GameEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: GameEntity)

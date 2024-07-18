@@ -1,6 +1,7 @@
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -8,6 +9,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.app_store_application.ui.theme.ButtonBackground
+import com.example.app_store_application.ui.theme.Purple
 import com.example.app_store_application.viewModel.LoginViewModel
 
 @Composable
@@ -120,7 +123,13 @@ fun LoginScreen(navController: NavController,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp) ,
-                    textStyle = LocalTextStyle.current.copy(color = Color.White)
+                    textStyle = LocalTextStyle.current.copy(color = Color.White),
+                            shape = RoundedCornerShape(22.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                            cursorColor = Purple,
+                            focusedBorderColor = Purple,
+
+                    )
             )
 
             OutlinedTextField(
@@ -139,6 +148,11 @@ fun LoginScreen(navController: NavController,
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                         textStyle = LocalTextStyle.current.copy(color = Color.White),
+                        shape = RoundedCornerShape(22.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                        cursorColor = Purple,
+                        focusedBorderColor = Purple,
+                            ),
                         visualTransformation = PasswordVisualTransformation()
 
             )

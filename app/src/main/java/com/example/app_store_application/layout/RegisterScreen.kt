@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -85,6 +86,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
+                shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
 
@@ -104,6 +106,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
+                    shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
 
@@ -123,6 +126,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
+                    shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
 
@@ -143,6 +147,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White),
+                shape = RoundedCornerShape(22.dp),
                 visualTransformation = PasswordVisualTransformation()
             )
 
@@ -163,6 +168,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White),
+                shape = RoundedCornerShape(22.dp),
                 visualTransformation = PasswordVisualTransformation()
             )
 
