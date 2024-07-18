@@ -76,6 +76,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
     //Material Dependencies
     implementation (libs.material)
     //Database dependencies
@@ -86,7 +87,7 @@ dependencies {
 
     //Courotines
     implementation(libs.kotlinx.coroutines.android)
-
+    //Coil Compose
     implementation(libs.coil.compose)
 
 

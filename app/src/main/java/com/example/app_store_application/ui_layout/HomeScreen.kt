@@ -1,4 +1,4 @@
-package com.example.app_store_application.layout
+package com.example.app_store_application.ui_layout
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -106,23 +107,26 @@ fun HomeScreen(navController: NavController,gameViewModel: GameViewModel) {
     if (showDialog && gameToDelete != null) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text(text = "Delete Game") },
-            text = { Text(text = "Are you sure you want to delete ${gameToDelete?.gameName}?") },
+            title = { Text(text = "Delete Game",color = Color.White)},
+            text = { Text(text = "Are you sure you want to remove ${gameToDelete?.gameName}?",color = Color.Black) },
             confirmButton = {
                 Button(
                     onClick = {
                         gameViewModel.deleteGame(gameToDelete!!)
                         showDialog = false
-                    }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Red
+                            )
                 ) {
-                    Text("Delete")
+                    Text("Delete",color = Color.White)
                 }
             },
             dismissButton = {
                 Button(
                     onClick = { showDialog = false }
                 ) {
-                    Text("Cancel")
+                    Text("Cancel", color = Color.White)
                 }
             }
         )

@@ -6,12 +6,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 
 
 //Annotation TypeConverters to connect Converters class to Appdatabase
 @Database(entities = [UserEntity::class, GameEntity::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun gameDao():GameDao
     abstract fun userDao(): UserDao

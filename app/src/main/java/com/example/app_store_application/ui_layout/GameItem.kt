@@ -1,4 +1,4 @@
-package com.example.app_store_application.layout
+package com.example.app_store_application.ui_layout
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

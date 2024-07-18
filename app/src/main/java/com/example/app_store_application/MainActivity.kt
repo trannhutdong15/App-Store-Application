@@ -9,7 +9,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,7 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.app_store_application.database.AppDatabase
-import com.example.app_store_application.layout.AddGameScreen
+import com.example.app_store_application.ui_layout.AddGameScreen
 import com.example.app_store_application.ui.theme.AppTheme
 import com.example.app_store_application.viewModel.AddGameViewModel
 import com.example.app_store_application.viewModel.AddGameViewModelFactory
@@ -27,8 +26,8 @@ import com.example.app_store_application.viewModel.LoginViewModel
 import com.example.app_store_application.viewModel.LoginViewModelFactory
 import com.example.app_store_application.viewModel.RegisterViewModel
 import com.example.app_store_application.viewModel.RegisterViewModelFactory
-import com.example.app_store_application.layout.HomeScreen
-import com.example.app_store_application.layout.RegisterScreen
+import com.example.app_store_application.ui_layout.HomeScreen
+import com.example.app_store_application.ui_layout.RegisterScreen
 import com.example.app_store_application.viewModel.GameViewModel
 import com.example.app_store_application.viewModel.GameViewModelFactory
 
@@ -44,9 +43,9 @@ class MainActivity : ComponentActivity() {
                 MyApp()
             }
         }
+        //Ask user to grant permission for the app to access through their image in local device
         checkAndRequestPermissions()
     }
-    //Ask user to grant permission for the app to access through their image in local device
     private fun checkAndRequestPermissions() {
         val permissionStatus: Boolean
 

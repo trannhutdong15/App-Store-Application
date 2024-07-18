@@ -1,4 +1,4 @@
-package com.example.app_store_application.layout
+package com.example.app_store_application.ui_layout
 
 
 import android.content.Context
@@ -53,8 +53,8 @@ fun AddGameScreen(navController: NavController,
 ) {
     var gameName by remember { mutableStateOf("") }
     var gameUrl by remember { mutableStateOf("") }
-    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
     val context = LocalContext.current
+    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
     //Initialize photo picker let user able to select image from local device
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
