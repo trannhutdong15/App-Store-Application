@@ -107,7 +107,7 @@ fun LoginScreen(navController: NavController,
                     )
                 }
             }
-
+            //Input email section
             OutlinedTextField(
                 value = email,
                 onValueChange = {  email = it },
@@ -131,7 +131,7 @@ fun LoginScreen(navController: NavController,
 
                     )
             )
-
+            //Input password section
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -172,6 +172,7 @@ fun LoginScreen(navController: NavController,
                     Text(text = "Create a new account", color = Color.White)
                 }
             }
+            //Login In using viewModel : LoginViewModel to handle logic code
             Button(
                 onClick = {
                     loginViewModel.loginUser(email, password) { isSuccess ->

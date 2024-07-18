@@ -1,10 +1,11 @@
 package com.example.app_store_application.layout
 
-import GameItem
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -12,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,10 +31,12 @@ import com.example.app_store_application.viewModel.GameViewModel
 @Composable
 fun HomeScreen(navController: NavController,gameViewModel: GameViewModel) {
     val games by gameViewModel.games.observeAsState(emptyList())
-    val onOptimizeClick: (GameEntity) -> Unit = { game ->
+    var showDialog by remember { mutableStateOf(false) }
+    var gameToDelete by remember { mutableStateOf<GameEntity?>(null) }
 
-    }
-    Surface(2
+
+
+    Surface(
         color = Color.Black,
         modifier = Modifier.fillMaxSize()
     ) {
@@ -63,11 +69,13 @@ fun HomeScreen(navController: NavController,gameViewModel: GameViewModel) {
                     .padding(vertical = 16.dp),
                 contentAlignment = Alignment.BottomEnd // Align the content to the top end of the Box
             ) {
+                //A straight line to divide two section
                 HorizontalDivider(
                     modifier = Modifier.fillMaxWidth(),
                     thickness = 1.dp,
                     color = Color.LightGray
                 )
+                //Icon add button to navigate to AddGameScreen
                 IconButton(
                     onClick = { navController.navigate("add_game_screen") },
                     modifier = Modifier.size(32.dp)
@@ -86,9 +94,39 @@ fun HomeScreen(navController: NavController,gameViewModel: GameViewModel) {
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(games) { game ->
-                    GameItem(game,onOptimizeClick)
+                    GameItem(game, onDeleteClick = {
+                        gameToDelete = it
+                        showDialog = true
+                    })
                 }
             }
         }
     }
+    //Dialog show when delete a game
+    if (showDialog && gameToDelete != null) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text(text = "Delete Game") },
+            text = { Text(text = "Are you sure you want to delete ${gameToDelete?.gameName}?") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        gameViewModel.deleteGame(gameToDelete!!)
+                        showDialog = false
+                    }
+                ) {
+                    Text("Delete")
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = { showDialog = false }
+                ) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
 }
+
+

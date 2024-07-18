@@ -55,13 +55,13 @@ fun AddGameScreen(navController: NavController,
     var gameUrl by remember { mutableStateOf("") }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
     val context = LocalContext.current
+    //Initialize photo picker let user able to select image from local device
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         selectedImageUri = uri
     }
-
-
+    //Set background color and other alignment
     Surface(color = Color.Black, modifier = Modifier.fillMaxSize()) {
         Column(
             verticalArrangement = Arrangement.Top,
@@ -75,6 +75,7 @@ fun AddGameScreen(navController: NavController,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                //Button navigate back to HomeScreen
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -93,6 +94,7 @@ fun AddGameScreen(navController: NavController,
 
                 Spacer(modifier = Modifier.width(48.dp))
             }
+            //Input game name
             OutlinedTextField(
                 value = gameName,
                 onValueChange = {gameName = it},
@@ -107,6 +109,7 @@ fun AddGameScreen(navController: NavController,
 
                     )
             )
+            //Input of Game Url or path
             OutlinedTextField(
                 value = gameUrl,
                 onValueChange = {gameUrl=it},

@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
         }
         checkAndRequestPermissions()
     }
-
+    //Ask user to grant permission for the app to access through their image in local device
     private fun checkAndRequestPermissions() {
         val permissionStatus: Boolean
 

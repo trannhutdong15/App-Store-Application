@@ -16,8 +16,8 @@ interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: GameEntity)
 
-    @Query("DELETE FROM GAME_TABLE WHERE id = :gameId")
-    suspend fun deleteGameById(gameId: Int)
+    @Delete
+    suspend fun deleteGame(game: GameEntity)
 
     @Query("SELECT * FROM game_table WHERE id = :gameId")
     fun getGameById(gameId: Int): LiveData<GameEntity>

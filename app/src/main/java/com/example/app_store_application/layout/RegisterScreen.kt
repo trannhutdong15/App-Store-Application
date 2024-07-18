@@ -35,7 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 fun RegisterScreen(navController: NavController ,registerViewModel: RegisterViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
-
+    //Initialize variable for storing user information
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
@@ -70,7 +70,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(text = "Register", style = MaterialTheme.typography.labelMedium, color = Color.White)
             }
-
+            //Input for fullname field
             OutlinedTextField(
                 value = fullName,
                 onValueChange = { fullName = it },
@@ -89,7 +89,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
-
+            //Input for Email field
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -109,7 +109,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                     shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
-
+            //Input for phone Number field
             OutlinedTextField(
                 value = phoneNumber,
                 onValueChange = { phoneNumber = it },
@@ -129,7 +129,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                     shape = RoundedCornerShape(22.dp),
                 textStyle = LocalTextStyle.current.copy(color = Color.White)
             )
-
+            //Input for password field
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -150,7 +150,7 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 shape = RoundedCornerShape(22.dp),
                 visualTransformation = PasswordVisualTransformation()
             )
-
+            //Input for confirm password
             OutlinedTextField(
                 value = confirmPassword,
                 onValueChange = { confirmPassword = it },
@@ -171,15 +171,21 @@ fun RegisterScreen(navController: NavController ,registerViewModel: RegisterView
                 shape = RoundedCornerShape(22.dp),
                 visualTransformation = PasswordVisualTransformation()
             )
-
+            //Register button or Sign up using RegisterViewModel to insert user in
             Button(
                 onClick = {
-                    if (password == confirmPassword) {
-                        registerViewModel.registerUser(fullName, email, phoneNumber, password)
-                        Toast.makeText(context, " Registered successfully!", Toast.LENGTH_SHORT).show()
-                        navController.navigate("login_screen") // Navigate back to login
+                    if (password.isNotBlank() && fullName.isNotBlank() && email.isNotBlank() && phoneNumber.isNotBlank()){
+                        if(password == confirmPassword) {
+                            registerViewModel.registerUser(fullName, email, phoneNumber, password)
+                            Toast.makeText(context, " Registered successfully!", Toast.LENGTH_SHORT)
+                                .show()
+                            navController.navigate("login_screen") // Navigate back to login
+                        }
+                        else {
+                            Toast.makeText(context, "Passwords do not match!", Toast.LENGTH_SHORT).show()
+                        }
                     } else {
-                        Toast.makeText(context, "Passwords do not match!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Please fill in all field", Toast.LENGTH_SHORT).show()
                     }
                 },
                 modifier = Modifier

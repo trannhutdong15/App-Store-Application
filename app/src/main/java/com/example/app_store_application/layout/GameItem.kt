@@ -1,5 +1,8 @@
+package com.example.app_store_application.layout
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -11,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.app_store_application.R // Adjust this as per your actual project structure
 import com.example.app_store_application.database.GameEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +25,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun GameItem(game: GameEntity, onOptimizeClick: (GameEntity) -> Unit) {
+fun GameItem(game: GameEntity, onDeleteClick: (GameEntity) -> Unit) {
     var optimized by remember { mutableStateOf(false) }
 
     Row(
@@ -57,25 +62,20 @@ fun GameItem(game: GameEntity, onOptimizeClick: (GameEntity) -> Unit) {
             // Spacer
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Optimize button
+            // Optimize button(check if optimize click or not to change color
             if (optimized) {
                 Text(
                     text = "Optimized",
                     color = Color.Green,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             } else {
                 Button(
                     onClick = {
-                        // Simulate delay and then mark as optimized
-                        onOptimizeClick(game)
-                        // Simulate delay for 3 seconds
                         CoroutineScope(Dispatchers.Default).launch {
                             delay(3000L)
                             optimized = true
                         }
                     },
-                    enabled = optimized,
                     modifier = Modifier,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Blue
@@ -84,6 +84,22 @@ fun GameItem(game: GameEntity, onOptimizeClick: (GameEntity) -> Unit) {
                     Text(text = if (optimized) "Optimized" else "Optimize", color = Color.White)
                 }
             }
+        }
+
+        // Spacer to push the delete button to the end
+
+        // Delete button
+        Box(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(end = 16.dp)
+                .clickable { onDeleteClick(game) }
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_delete),
+                contentDescription = "Delete",
+                modifier = Modifier.size(28.dp)
+            )
         }
     }
 }
