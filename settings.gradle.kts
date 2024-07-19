@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "App-Store-Application"
+rootProject.name = "Optimize-Application"
 include(":app")
+ 

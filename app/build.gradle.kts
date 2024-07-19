@@ -1,17 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp") version "2.0.0-1.0.23"
 }
 
 android {
-    namespace = "com.example.app_store_application"
+    namespace = "com.example.optimize_application"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.app_store_application"
-        minSdk = 26
+        applicationId = "com.example.optimize_application"
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -20,12 +20,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
-    viewBinding {
-        enable = true
-    }
-    dataBinding{
-        enable = true
     }
 
     buildTypes {
@@ -67,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
@@ -77,21 +72,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Material Dependencies
-    implementation (libs.material)
-    //Database dependencies
+    //Material download
+    implementation(libs.material)
+
+    //Room database dependencies
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
-
+    testImplementation(libs.androidx.room.testing)
+    //Using ksp instead of kapt
+    ksp(libs.androidx.room.compiler)
     //Courotines
     implementation(libs.kotlinx.coroutines.android)
     //Coil Compose
     implementation(libs.coil.compose)
-
-
-
-
-
 }
